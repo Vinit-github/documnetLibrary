@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Xlab\DocumentLibrary\Api\FileRepositoryInterface" type="Xlab\DocumentLibrary\Model\FileRepository"/>
+	<preference for="Xlab\DocumentLibrary\Api\Data\FileInterface" type="Xlab\DocumentLibrary\Model\File"/>
+	<preference for="Xlab\DocumentLibrary\Api\Data\FileSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>

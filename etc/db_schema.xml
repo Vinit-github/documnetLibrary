@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="xlab_documentlibrary_file" resource="default" engine="innodb" comment="xlab_documentlibrary_file Table">
+		<column xsi:type="int" name="file_id" padding="10" unsigned="true" nullable="false" identity="true" comment="File Id"/>
+		<column xsi:type="int" name="amasty_file_id" padding="10" unsigned="true" nullable="false" comment="Amasty File Id"/>
+		<column xsi:type="varchar" name="filepath" nullable="false" length="255" default="" comment="File Path"/>
+		<column xsi:type="varchar" name="filename" nullable="false" length="255" comment="File Name"/>
+        <column xsi:type="varchar" name="label" nullable="false" length="255" comment="Label"/>
+		<column xsi:type="varchar" name="url_hash" nullable="false" length="32" default="" comment="md5 random hash for url creation"/>
+        <column xsi:type="boolean" name="is_visible" nullable="true" comment="Is File Visible"/>
+		<column xsi:type="smallint" name="attachment_type" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Attachment Type"/>
+		
+		<column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Product Entity ID"/>
+		<column xsi:type="varchar" name="sku" nullable="false" length="255" comment="sku"/>
+		<column xsi:type="varchar" name="manufacturer" nullable="false" length="255" comment="manufacturer"/>
+		<column xsi:type="varchar" name="extension" nullable="false" length="255" comment="File Extension"/>
+		<column xsi:type="varchar" name="model" nullable="false" length="255" comment="Model"/>
+		<column xsi:type="varchar" name="equipment_type" nullable="false" length="255" comment="equipment_type"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="file_id"/>
+		</constraint>
+	</table>
+</schema>

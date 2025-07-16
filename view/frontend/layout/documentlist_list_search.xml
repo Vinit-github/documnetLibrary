@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">	
+	<body>
+	 	<referenceContainer name="page.wrapper">
+             <referenceBlock name="breadcrumbs">
+                 <action method="addCrumb">
+                     <argument name="crumbName" xsi:type="string">home</argument>
+                     <argument name="crumbInfo" xsi:type="array">
+                         <item name="label" xsi:type="string">Home</item>
+                         <item name="link" xsi:type="string">/</item>
+                     </argument>
+                 </action>
+                 <action method="addCrumb">
+                     <argument name="crumbName" xsi:type="string">Resources</argument>
+                     <argument name="crumbInfo" xsi:type="array">
+                         <item name="label" xsi:type="string">Resources</item>
+                         <item name="link" xsi:type="string">/resource-center.html</item>
+                     </argument>
+                 </action>
+                 <action method="addCrumb">
+                     <argument name="crumbName" xsi:type="string">Document Library</argument>
+                     <argument name="crumbInfo" xsi:type="array">
+                         <item name="title" xsi:type="string">Document Library</item>
+                         <item name="label" xsi:type="string">Document Library</item>
+                     </argument>
+                 </action>
+             </referenceBlock>
+         </referenceContainer>
+		<referenceContainer name="content">
+			<block name="list.search" class="Xlab\DocumentLibrary\Block\List\SearchFields" template="Xlab_DocumentLibrary::list/search-fields.phtml"/>
+			<block name="list.search.result" class="Xlab\DocumentLibrary\Block\List\Search" template="Xlab_DocumentLibrary::list/search-list.phtml" />
+		</referenceContainer>
+	</body>
+</page>

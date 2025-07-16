@@ -1,0 +1,91 @@
+<?php 
+$manufactures = $block->getManufactures(); 
+$equpTypes = $block->getEquipmentType();
+$DocumentTypes = $block->getDocType();
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+$selectedManufacturer = isset($_GET['manufacturer']) ? $_GET['manufacturer'] : '';
+$selectedEquipmentType = isset($_GET['equipment_type']) ? $_GET['equipment_type'] : '';
+$selectedDocumentType = isset($_GET['label']) ? $_GET['label'] : '';
+$showClearButton = !empty($keyword) || !empty($selectedManufacturer) || !empty($selectedEquipmentType) || !empty($selectedDocumentType);
+?>
+<div class="serach-box">
+<div class="serach-title">Search Document</div>
+<form id="document-search-form" method="GET">
+<div class="search-area">
+    <div class="keyword">
+        <input type="text" id="search-keyword" name="keyword" placeholder="Enter Keyword" value ="<?php echo htmlspecialchars($keyword); ?>" class="input-text"/>
+    </div>
+    <div class="keyword">
+    <select id="manufacturer" class="select" name="manufacturer">
+        <option value="">Select Manufacturer</option>
+        <?php if($manufactures && count($manufactures)):?>
+            <?php foreach($manufactures as $manufacture): ?>
+                <option value="<?php echo htmlspecialchars($manufacture); ?>" 
+                                <?php echo ($manufacture == $selectedManufacturer) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($manufacture); ?>
+                </option>
+            <?php endforeach;?>
+        <?php endif;?>
+    </select>
+    </div>
+    <div class="keyword">
+        <select id="equipment_type" class="select" name="equipment_type">
+            <option value="">Select Equipment Type</option>
+            <?php if($equpTypes && count($equpTypes)):?>
+                <?php foreach($equpTypes as $equpType): ?>
+                    <option value="<?php echo htmlspecialchars($equpType); ?>" 
+                                <?php echo ($equpType == $selectedEquipmentType) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($equpType); ?>
+                    </option>
+                <?php endforeach;?>
+            <?php endif;?>
+        </select>
+    </div>
+    <div class="keyword">
+        <select id="label" class="select" name="label">
+            <option value="">Select Document Type</option>
+            <?php if($DocumentTypes && count($DocumentTypes)):?>
+                <?php foreach($DocumentTypes as $DocumentType): ?>
+                     <option value="<?php echo htmlspecialchars($DocumentType); ?>" 
+                                <?php echo ($DocumentType == $selectedDocumentType) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($DocumentType); ?>
+                     </option>
+                <?php endforeach;?>
+            <?php endif;?>
+        </select>
+    </div>
+    <div class="keyword">
+        <button id="search-documents" type="submit" class="action submit primary customer-submit">Search</button>
+    </div>
+    <div class="keyword clear-button" id="clear-button" style="<?php echo $showClearButton ? '' : 'display:none;'; ?>"><a href="<?php echo $this->getUrl('documentlist/list/search/');?>" title ="<?php echo "Clear";?>"><?php echo "Clear";?></a></div>
+	</form>
+	
+</div>
+<div id="error-message" class ="doc-lib-error" style="color: #e02b27; display: none; margin-top: 10px;" style="display:none;">Please select any one field.</div>
+</div>
+<script type="text/javascript">
+    require(['jquery', 'domReady!'], function($) {
+        $(document).ready(function() {
+            $('body').trigger('processStop');
+
+            $('#document-search-form').on('submit', function(e) {
+                var keyword = $('#search-keyword').val().trim();
+                var manufacturer = $('#manufacturer').val().trim();
+                var equipmentType = $('#equipment_type').val().trim();
+                var documentType = $('#label').val().trim();
+
+                var selectedFields = [keyword, manufacturer, equipmentType, documentType].filter(Boolean).length;
+
+                if (selectedFields === 0) {
+					e.preventDefault(); // Prevent form submission
+					$('#error-message').show();
+				} else {
+					$('#error-message').hide();
+					$('body').trigger('processStart'); // Show loader on submit
+				}
+            });
+        });
+    });
+</script>
+
+

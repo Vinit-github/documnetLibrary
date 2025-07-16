@@ -1,0 +1,22 @@
+{
+    "name": "xlab/module-documentlibrary",
+    "description": "DocumentLibrary",
+    "type": "magento2-module",
+    "license": "",
+    "authors": [
+        {
+            "name": "vinit kumar",
+            "email": "vini.contact@gamil.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Xlab\\DocumentLibrary\\": ""
+        }
+    }
+}
